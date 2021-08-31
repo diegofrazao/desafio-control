@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+    <title>Cadastro de Ordem de Serviço</title>
+</head>
+<body>
+<header>
+    <header class="d-flex justify-content-center py-3">
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a th:href="@{/home}" class="nav-link" aria-current="page">Home</a></li>
+            <li class="nav-item"><a th:href="@{/servico}" class="nav-link">Serviços</a></li>
+            <li class="nav-item"><a th:href="@{/ordem-servico}" class="nav-link active">Ordens de Serviços</a></li>
+            <li class="nav-item"><a th:href="@{/relatorio}" class="nav-link">Relatório</a></li>
+        </ul>
+    </header>
+</header>
+
+<h1 class="text-center">Cadastrar Ordem de Serviço</h1>
+
+<div class="d-flex justify-content-center">
+    <form action="#" th:action="@{/adicionar-ordem-servico}" th:object="${ordemServico}" method="post">
+        <div class="d-flex gap-2">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label">Serviço</label>
+                    <input th:field="*{servico}" type="text" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Quantidade</label>
+                    <input min="1" th:field="*{quantidade}" type="number" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Funcionário</label>
+                    <input th:field="*{nomeFuncionario}" type="text" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Data</label>
+                    <input th:field="*{data}" type="date" class="form-control" required>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label">Hora de Início</label>
+                    <input th:field="*{horaInicio}" type="time" step="1" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Hora de Término</label>
+                    <input th:field="*{horaFim}" type="time" step="1" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Detalhe</label>
+                    <input th:field="*{detalhe}" type="text" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">
+                Cadastrar
+            </button>
+            <button type="reset" class="btn btn-secondary">
+                Limpar
+            </button>
+            <a th:href="@{/ordem-servico}">
+                <button type="submit" class="btn btn-danger">
+                    Cancelar
+                </button>
+            </a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

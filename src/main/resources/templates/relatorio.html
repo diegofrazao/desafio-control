@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+    <title>Relatório</title>
+</head>
+<body>
+<header>
+    <header class="d-flex justify-content-center py-3">
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a th:href="@{/home}" class="nav-link" aria-current="page">Home</a></li>
+            <li class="nav-item"><a th:href="@{/servico}" class="nav-link">Serviços</a></li>
+            <li class="nav-item"><a th:href="@{/ordem-servico}" class="nav-link">Ordens de Serviços</a></li>
+            <li class="nav-item"><a th:href="@{/relatorio}" class="nav-link active">Relatório</a></li>
+        </ul>
+    </header>
+</header>
+<h1 class="text-center">Relatório</h1>
+<div class="text-center">
+    <table class="d-flex justify-content-center table table-hover table-bordered">
+        <tr class="table-primary">
+            <th class="text-wrap">Serviço</th>
+            <th class="text-wrap">Valor Unitário (R$)</th>
+            <th class="text-wrap">Qtd</th>
+            <th class="text-wrap">Valor Total (R$)</th>
+            <th class="text-wrap">Desconto (%)</th>
+            <th class="text-wrap">Valor Final (R$)</th>
+        </tr>
+        <tr th:each="relatorio : ${exibirRelatorio}">
+            <th scope="row" th:text="${relatorio.servico.descricao}"></th>
+            <td th:text="'R$ ' + ${relatorio.servico.valor}"></td>
+            <td th:text="${relatorio.quantidade}"></td>
+            <td th:text="'R$ ' + ${relatorio.getValorTotal()}"></td>
+            <td th:text="${relatorio.getDesconto()} + '%'"></td>
+            <td th:text="'R$ ' + ${relatorio.getValorFinal()}"></td>
+        </tr>
+        <tr th:if="${!exibirRelatorio.isEmpty()}">
+            <th scope="row">TOTAL</th>
+            <td colspan="2"></td>
+            <td th:text="'R$ ' + ${#aggregates.sum(exibirRelatorio.![getValorTotal()])}"></td>
+            <td></td>
+            <td th:text="'R$ ' + ${#aggregates.sum(exibirRelatorio.![getValorFinal()])}"></td>
+        </tr>
+    </table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+</body>
+</html>
