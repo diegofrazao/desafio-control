@@ -5,7 +5,7 @@
 Para utilização do sistema você precisará instalar as seguintes ferramentas:
 
 + Web browser de sua escolha (Ex.: Google Chrome, Mozilla Firefox)
-+ [node.js] (versão LTS) - Auxiliar na instalação do bootstrap e bootstrap icons
++ [node.js] (https://nodejs.org/en/download/) - Auxiliar na instalação do bootstrap e bootstrap icons
 + [IntelliJ](https://www.jetbrains.com/pt-br/idea/download/) -  IDE de desenvolvimento
 + [PostgreSQL](https://www.postgresql.org/download/) - Banco de dados
 + [Bootstrap](https://getbootstrap.com/docs/5.1/getting-started/download/) - Estilização
